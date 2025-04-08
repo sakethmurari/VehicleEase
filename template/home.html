@@ -1,0 +1,288 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0056b3;
+        }
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            background-color: #003f7f;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: url('https://via.placeholder.com/1500x400') no-repeat center center/cover;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3em;
+        }
+        .hero p {
+            font-size: 1.2em;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .card {
+            background: white;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+        .card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #003f7f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to VehicleEase</h1>
+        <p>Your one-stop solution for vehicle booking!</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Vehicles</a>
+        <a href="#">Bookings</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="#">Contact Us</a>
+
+    </nav>
+
+    <section class="hero">
+        <h1>Book Your Vehicle</h1>
+        <p>Choose from a wide range of cars, vans, lorries, and more.</p>
+        <button>Book Now</button>
+    </section>
+
+    <section class="content">
+        <div class="card">
+            <h3>Cars</h3>
+            <p>Perfect for small families and city trips.</p>
+            <button>Explore</button>
+        </div>
+        <div class="card">
+            <h3>Vans</h3>
+            <p>Ideal for group travels and moving needs.</p>
+            <button>Explore</button>
+        </div>
+        <div class="card">
+            <h3>Lorries</h3>
+            <p>Suitable for heavy-duty transport and logistics.</p>
+            <button>Explore</button>
+        </div>
+        <div class="card">
+            <h3>Other Vehicles</h3>
+            <p>Check out our collection of specialized vehicles.</p>
+            <button>Explore</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 VehicleEase. All rights reserved.</p>
+    </footer>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #0056b3;
+        }
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            background-color: #003f7f;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: url('https://via.placeholder.com/1500x400') no-repeat center center/cover;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 3em;
+        }
+        .hero p {
+            font-size: 1.2em;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+        .card {
+            background: white;
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin-top: 0;
+        }
+        .card p {
+            font-size: 14px;
+            color: #666;
+        }
+        .card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .card button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            background-color: #003f7f;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .section {
+            padding: 20px;
+            margin: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to VehicleEase</h1>
+        <p>Your one-stop solution for vehicle booking!</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Vehicles</a>
+        <a href="#">Bookings</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="#">Contact Us</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Book Your Vehicle</h1>
+        <p>Choose from a wide range of cars, vans, lorries, and more.</p>
+        <button>Book Now</button>
+    </section>
+
+    <section id="vehicles" class="section">
+        <h2>Our Vehicles</h2>
+        <p>We offer a variety of vehicles to meet all your needs:</p>
+        <ul>
+            <li><strong>Cars:</strong> Compact, Sedan, SUV, and more.</li>
+            <li><strong>Vans:</strong> Spacious vans for group travel.</li>
+            <li><strong>Lorries:</strong> Heavy-duty vehicles for cargo transport.</li>
+            <li><strong>Specialized Vehicles:</strong> Luxury and utility options available.</li>
+        </ul>
+    </section>
+
+    <section id="bookings" class="section">
+        <h2>Your Bookings</h2>
+        <p>Manage your vehicle reservations easily:</p>
+        <ol>
+            <li>View your booking history.</li>
+            <li>Modify existing bookings.</li>
+            <li>Cancel a reservation if needed.</li>
+            <li>Track your current bookings and get real-time updates.</li>
+        </ol>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>We'd love to hear from you! Reach out to us through:</p>
+        <ul>
+            <li>Email: support@vehicleease.com</li>
+            <li>Phone: +1-800-555-VEHICLE</li>
+            <li>Address: 123 VehicleEase Lane, AutoCity, CA 12345</li>
+        </ul>
+        <p>Or fill out our <a href="#">online contact form</a> for quick assistance.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 VehicleEase. All rights reserved.</p>
+    </footer>
+</body>
+</html>

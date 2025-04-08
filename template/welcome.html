@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+        .cart-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .cart-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 10px;
+        }
+        .cart-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .cart-item h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .cart-item p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .cart-item input {
+            margin: 10px 0;
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+        }
+        .cart-item button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart-item button:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            margin-top: 10px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'welcome' %}">Home</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a href="{% url 'history' %}">History</a>
+        <a href="{% url 'home' %}">Logout</a>
+    </div>
+    <div class="welcome-message">
+        Hi, {{ user.username }} ! Welcome to our booking platform.
+        {{ user.email }}
+    </div>
+
+     <h1>Available Vehicles</h1>
+    <div class="cart-container">
+        {% for vehicle in vehicles %}
+            <div class="cart-item" >
+                <img src="{{ vehicle.picture.url }}" alt="{{ vehicle.name }}">
+                <h2>{{ vehicle.name }}</h2>
+                <p>Type:{{ vehicle.vehicle_type }}</p>
+                <p>Price per day: ${{ vehicle.price }}</p>
+                <form method="post" action="{% url 'book_vehicle' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="id" value="{{vehicle.id }}">
+                    <input type="hidden" name="email" value="{{user.email }}">
+                    <input type="hidden" name="vehicle_name" value="{{ vehicle.name }}">
+                    <input type="hidden" name="price" value="{{ vehicle.price }}">
+                    <input type="hidden" name="type" value="{{ vehicle.vehicle_type }}">
+                    <input type="hidden" name="car_number" value="{{ vehicle.car_number }}">
+                    <label for="days-{{ vehicle.id }}">Days:</label>
+                    <input type="number" id="days-{{ vehicle.id }}" name="days" min="1" value="1">
+                    <button type="submit">Book Now</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div> 
+
+    <script>
+        document.querySelectorAll('.book-button').forEach((button) => {
+            button.addEventListener('click', function() {
+                const cartItem = this.closest('.cart-item');
+                const vehicleId = cartItem.getAttribute('data-id');
+                const price = cartItem.getAttribute('data-price');
+                const days = cartItem.querySelector('.days-input').value;
+
+                const bookingData = {
+                    vehicleId: vehicleId,
+                    price: price,
+                    days: days,
+                    totalPrice: price * days
+                };
+
+                // Send bookingData to the server (for example using Fetch API)
+                console.log(bookingData);
+
+                // Example: Sending to backend via AJAX (you can replace with actual AJAX request)
+                fetch('/your-booking-endpoint/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bookingData),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Booking successful:', data);
+                    cartItem.querySelector('.status').innerText = 'Booking confirmed!';
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    cartItem.querySelector('.status').innerText = 'Booking failed!';
+                });
+            });
+        });
+    </script>
+        <script src="{% static 'welcome.js' %}"></script>
+
+</body>
+</html>
